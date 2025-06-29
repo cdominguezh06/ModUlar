@@ -1,0 +1,73 @@
+﻿@using PacoYakuzaMAUI.services
+@using PacoYakuzaMAUI.utils
+@inherits LayoutComponentBase
+@inject BackgroundState BgState
+@inject EventAggregator Events
+@implements IDisposable
+@code {
+    private Func<Task> _listener;
+    private bool _isDisposed = false;
+
+    protected override void OnInitialized()
+    {
+        // Crear el listener con protección against disposed
+        _listener = async () => 
+        {
+            if (!_isDisposed)
+            {
+                await InvokeAsync(SafeStateHasChanged);
+            }
+        };
+        
+        // Suscribirse al evento
+        Events.BackgroundChanged += _listener;
+    }
+
+    private void SafeStateHasChanged()
+    {
+        try
+        {
+            if (!_isDisposed)
+            {
+                StateHasChanged();
+            }
+        }
+        catch
+        {
+            // Ignora errores si el componente está disposed
+        }
+    }
+
+    public void Dispose()
+    {
+        // Marcar como disposed primero
+        _isDisposed = true;
+        
+        // Limpiar la suscripción
+        if (_listener != null)
+        {
+            try
+            {
+                Events.BackgroundChanged -= _listener;
+            }
+            catch { } // Ignorar errores durante la limpieza
+        }
+    }
+}
+<CascadingValue Value="(Action<string>)(style => BgState.MainBackgroundStyle = style)">
+    <div class="page">
+        <div class="sidebar">
+            <NavMenu/>
+        </div>
+
+        <main class="main-content" style="@BgState.MainBackgroundStyle">
+            <div class="top-row px-4">
+                <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+            </div>
+
+            <article class="content px-4">
+                @Body
+            </article>
+        </main>
+    </div>
+</CascadingValue>

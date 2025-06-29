@@ -1,0 +1,14 @@
+﻿.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.settings-grid-item {
+    
+}
+
+.settings-grid-item.span-two {
+    grid-column: 1 / span 2;
+}

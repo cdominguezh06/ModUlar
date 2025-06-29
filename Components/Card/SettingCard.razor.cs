@@ -1,0 +1,10 @@
+﻿using Microsoft.AspNetCore.Components;
+using PacoYakuzaMAUI.model;
+
+namespace PacoYakuzaMAUI.Components.Card;
+
+public partial class SettingCard : ComponentBase
+{
+    [Parameter]
+    public Setting Setting { get; set; }
+}
