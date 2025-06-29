@@ -18,7 +18,7 @@ public class GitHubService
         try
         {
             // URL para acceder al README.md en formato raw
-            string url = "https://raw.githubusercontent.com/cdominguezh06/spylook/9f6ee7fffd0ab994eea03480b3940fa9294aea0b/README.md";
+            string url = "https://raw.githubusercontent.com/cdominguezh06/ModUlar/b9748494e55d55a3984a4c8a653bd51a2c944bbb/README.md";
             
             var response = await _httpClient.GetAsync(url);
             

@@ -5,59 +5,63 @@
 @implements IDisposable
 
 @code {
-    private Func<Task> _listener;
-    private bool _isDisposed = false;
+private Func<Task> _listener;
+private bool _isDisposed = false;
 
-    protected override void OnInitialized()
-    {
-        _listener = async () => 
-        {
-            if (!_isDisposed)
-            {
-                await InvokeAsync(SafeStateHasChanged);
-            }
-        };
-        
-        Events.BackgroundChanged += _listener;
-    }
-
-    private void SafeStateHasChanged()
-    {
-        try
-        {
-            if (!_isDisposed)
-            {
-                StateHasChanged();
-            }
-        }
-        catch
-        {
-            // Ignora errores si el componente está disposed
-        }
-    }
-
-    public void Dispose()
-    {
-        _isDisposed = true;
-        
-        if (_listener != null)
-        {
-            try
-            {
-                Events.BackgroundChanged -= _listener;
-            }
-            catch { }
-        }
-    }
+protected override void OnInitialized()
+{
+_listener = async () =>
+{
+if (!_isDisposed)
+{
+await InvokeAsync(SafeStateHasChanged);
 }
+};
+
+Events.BackgroundChanged += _listener;
+}
+
+private void SafeStateHasChanged()
+{
+try
+{
+if (!_isDisposed)
+{
+StateHasChanged();
+}
+}
+catch
+{
+// Ignora errores si el componente está disposed
+}
+}
+
+public void Dispose()
+{
+_isDisposed = true;
+
+if (_listener != null)
+{
+try
+{
+Events.BackgroundChanged -= _listener;
+}
+catch { }
+}
+}
+}
+
 
 <CascadingValue Value="(Action<string>)(style => BgState.MainBackgroundStyle = style)">
     <div class="page">
-        <div class="sidebar">
-            <NavMenu/>
+        <div class="sidebar-wrapper">
+            <div class="sidebar-background" style="@BgState.MainBackgroundStyle"></div>
+            <div class="sidebar-content" style="@BgState.TextColorStyle">
+                <NavMenu/>
+            </div>
         </div>
         <main class="main-content" style="@BgState.MainBackgroundStyle">
-            <div class="top-row px-4">
+            <div class="top-row px-4" style="background-color: rgba(0,0,0,0.29)">
                 <PayPalDonateButton HostedButtonId="PD8TLKZR9DK8Q" />
             </div>
             <article class="content-wrapper px-4" style="@BgState.TextColorStyle">

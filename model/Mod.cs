@@ -15,6 +15,7 @@ public class Mod
     [YamlMember(Alias = "Settings")]
     public List<Setting> Settings { get; set; }
 
+    public String Folder = "";
     public Mod()
     {
         Settings = new List<Setting>();
