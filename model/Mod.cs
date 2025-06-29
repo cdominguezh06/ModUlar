@@ -12,7 +12,7 @@ public class Mod
     public string Background { get; set; } = "none"; // Default background, can be overridden by mod
     public string Description { get; set; }
     public string Version { get; set; } 
-    [YamlMember(Alias = "Modular")]
+    [YamlMember(Alias = "Settings")]
     public List<Setting> Settings { get; set; }
 
     public Mod()

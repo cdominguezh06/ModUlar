@@ -13,7 +13,7 @@ public static class ModService
             var dir = AppDomain.CurrentDomain.BaseDirectory;
             foreach (var modDir in Directory.GetDirectories(dir))
             {
-                var modYamlPath = Path.Combine(modDir, "mod-meta.yaml");
+                var modYamlPath = Path.Combine(modDir, "modular.yaml");
                 if (File.Exists(modYamlPath))
                 {
                     var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()

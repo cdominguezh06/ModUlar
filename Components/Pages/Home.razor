@@ -1,5 +1,16 @@
 ﻿@page "/"
+@using PacoYakuzaMAUI.services
+@inject BackgroundState BgState
 
+@code
+{
+    [CascadingParameter] public Action<string> SetMainBackgroundStyle { get; set; }
+    protected override void OnInitialized()
+    {
+        // Establecer imagen con oscuridad
+        SetMainBackgroundStyle?.Invoke("background: #fff;");
+    }
+}
 <h1>Mod-Ular</h1>
 
 <p>Welcome to Mod-Ular, the best tool for working with Yakuza/Like a Dragon modular mods</p>
