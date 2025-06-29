@@ -1,16 +1,89 @@
 ﻿@page "/"
+@using Markdig
+@using System.Text.RegularExpressions
 @using PacoYakuzaMAUI.services
-@inject BackgroundState BgState
+@inject GitHubService GitHubService
 
-@code
+<PageTitle>ModUlar - Home</PageTitle>
+
+@if (isLoading)
 {
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <p>Cargando documentación...</p>
+    </div>
+}
+else
+{
+    <div class="readme-content">
+        @((MarkupString)renderedMarkdown)
+    </div>
+}
+
+@code {
+    private string rawMarkdown = string.Empty;
+    private string renderedMarkdown = string.Empty;
+    private bool isLoading = true;
     [CascadingParameter] public Action<string> SetMainBackgroundStyle { get; set; }
-    protected override void OnInitialized()
+
+    protected override async Task OnInitializedAsync()
     {
-        // Establecer imagen con oscuridad
         SetMainBackgroundStyle?.Invoke("background: #fff;");
+        await LoadReadmeAsync();
+    }
+
+    private async Task LoadReadmeAsync()
+    {
+        isLoading = true;
+
+        try
+        {
+            // Obtener el contenido del README.md desde GitHub
+            rawMarkdown = await GitHubService.GetReadmeContentAsync();
+
+            // Configuración de Markdig para soportar todas las características de GitHub Flavored Markdown
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .UsePipeTables()
+                .UseEmphasisExtras()
+                .Build();
+                
+            // Renderizar el markdown a HTML
+            renderedMarkdown = Markdig.Markdown.ToHtml(rawMarkdown, pipeline);
+
+            // Procesar las imágenes para asegurar URLs correctas y asegurar que haya un max-width
+            renderedMarkdown = ProcessImageUrls(renderedMarkdown);
+
+            // Asegurarse de que todos los bloques de código respeten el ancho
+            renderedMarkdown = ProcessCodeBlocks(renderedMarkdown);
+        }
+        catch (Exception ex)
+        {
+            renderedMarkdown = $"<p>Error al cargar el README: {ex.Message}</p>";
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private string ProcessImageUrls(string html)
+    {
+        // Asegura que las imágenes relativas apunten a GitHub
+        string baseUrl = "https://raw.githubusercontent.com/cdominguezh06/spylook/9f6ee7fffd0ab994eea03480b3940fa9294aea0b/";
+
+        // Patrón para encontrar imágenes con rutas relativas
+        var regex = new Regex("src=\"(?!http)([^\"]+)\"");
+
+        // Reemplazar las rutas relativas con URLs absolutas
+        return regex.Replace(html, match => $"src=\"{baseUrl}{match.Groups[1].Value}\"");
+    }
+    
+    private string ProcessCodeBlocks(string html)
+    {
+        // Añadir clase para permitir desbordamiento controlado a los bloques de código
+        var regex = new Regex("<pre><code([^>]*)>");
+        return regex.Replace(html, "<pre class=\"code-block\"><code$1>");
     }
 }
-<h1>Mod-Ular</h1>
-
-<p>Welcome to Mod-Ular, the best tool for working with Yakuza/Like a Dragon modular mods</p>

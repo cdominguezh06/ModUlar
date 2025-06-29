@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using PacoYakuzaMAUI.services;
+using PacoYakuzaMAUI.Services;
 using PacoYakuzaMAUI.utils;
 
 namespace PacoYakuzaMAUI;
@@ -16,6 +17,9 @@ public static class MauiProgram
         builder.Services.AddMauiBlazorWebView();
         builder.Services.AddSingleton<EventAggregator>();
         builder.Services.AddScoped<BackgroundState>();
+        builder.Services.AddHttpClient();
+        builder.Services.AddScoped<GitHubService>();
+        builder.Services.AddSingleton<ILauncherService, LauncherService>();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();

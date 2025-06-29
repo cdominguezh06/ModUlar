@@ -1,0 +1,24 @@
+﻿@using PacoYakuzaMAUI.Services
+@inject ILauncherService LauncherService
+@inject IJSRuntime JSRuntime
+
+<div class="paypal-button-container">
+    <button class="paypal-donate-button" @onclick="OpenPayPalDonation">
+        <img src="https://www.paypalobjects.com/en_US/ES/i/btn/btn_donateCC_LG.gif" 
+             alt="Donate with PayPal button"
+             title="PayPal - The safer, easier way to pay online!" />
+    </button>
+</div>
+
+@code {
+    [Parameter] public string HostedButtonId { get; set; } = "PD8TLKZR9DK8Q";
+    
+    private async Task OpenPayPalDonation()
+    {
+        // URL directa para donación de PayPal usando el ID del botón alojado
+        string paypalDonateUrl = $"https://www.paypal.com/donate?hosted_button_id={HostedButtonId}";
+        
+        // Abrir la URL usando el servicio personalizado
+        await LauncherService.OpenAsync(paypalDonateUrl);
+    }
+}

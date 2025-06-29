@@ -1,0 +1,71 @@
+﻿.readme-content {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.readme-content ::deep * {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Estilos específicos para elementos problemáticos */
+.readme-content ::deep pre {
+    white-space: pre-wrap; /* Permite que el texto se envuelva en bloques pre */
+    overflow-x: auto;      /* Permite scroll horizontal solo si es absolutamente necesario */
+    max-width: 100%;
+}
+
+.readme-content ::deep code {
+    word-break: break-all; /* Más agresivo para código */
+    white-space: pre-wrap;
+}
+
+.readme-content ::deep table {
+    display: block;        /* Hace que la tabla se comporte como un bloque */
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;      /* Permite scroll horizontal para tablas */
+}
+
+.readme-content ::deep img {
+    max-width: 100%;
+    height: auto;
+}
+
+.readme-content ::deep a {
+    word-break: break-all; /* Para URLs largas */
+}
+
+/* Clase específica para los bloques de código */
+.readme-content ::deep .code-block {
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+/* Estilos básicos para el spinner de carga */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

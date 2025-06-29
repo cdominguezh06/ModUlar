@@ -12,3 +12,13 @@
 .settings-grid-item.span-two {
     grid-column: 1 / span 2;
 }
+
+@media (max-width: 640.98px) {
+    .settings-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .settings-grid-item.span-two {
+        grid-column: 1;
+    }
+}

@@ -58,10 +58,12 @@
         </div>
         <main class="main-content" style="@BgState.MainBackgroundStyle">
             <div class="top-row px-4">
-                <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+                <PayPalDonateButton HostedButtonId="PD8TLKZR9DK8Q" />
             </div>
-            <article class="content px-4" style="@BgState.TextColorStyle">
-                @Body
+            <article class="content-wrapper px-4" style="@BgState.TextColorStyle">
+                <div class="content-container">
+                    @Body
+                </div>
             </article>
         </main>
     </div>
