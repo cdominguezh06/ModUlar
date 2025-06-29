@@ -2,7 +2,6 @@
 @using PacoYakuzaMAUI.model
 @using PacoYakuzaMAUI.services
 @using PacoYakuzaMAUI.Components.Card
-
 @code {
     [Parameter] public string modName { get; set; }
     [CascadingParameter] public Action<string> SetMainBackgroundStyle { get; set; }
@@ -30,17 +29,16 @@
 }
 else
 {
-    <h1>@currentMod.Name</h1>
+    <h1 style="font-family: 'Edo SZ', serif">@currentMod.Name</h1>
     <p>Autor: @currentMod.Author</p>
     <p>Versión: @currentMod.Version</p>
     <p>@currentMod.Description</p>
-    <p>@currentMod.Background</p>
     <div class="settings-grid">
         @for (int i = 0; i < currentMod.Settings.Count; i++)
         {
             bool isLastOdd = currentMod.Settings.Count % 2 == 1 && i == currentMod.Settings.Count - 1;
             <div class="settings-grid-item @(isLastOdd ? "span-two" : "")">
-                <SettingCard Setting="@currentMod.Settings[i]"/>
+                <SettingCard Setting="@currentMod.Settings[i]" ModFolder = "@currentMod.Folder"/>
             </div>
         }
     </div>

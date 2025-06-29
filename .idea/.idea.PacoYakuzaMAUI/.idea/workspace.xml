@@ -10,24 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ff5bbc6-1608-4719-b128-1e82aea160c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Components/Pages/Home.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Components/PayPalDonateButton.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Components/PayPalDonateButton.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/GitHubService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/ILauncherService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/LauncherService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wwwroot/js/paypal-donate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/SettingModifierService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PacoYakuzaMAUI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PacoYakuzaMAUI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/Card/SettingCard.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Card/SettingCard.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/Card/SettingCard.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Card/SettingCard.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/Card/SettingCard.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Card/SettingCard.razor.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Components/Layout/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Layout/MainLayout.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Components/Layout/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Layout/MainLayout.razor.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Components/Layout/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Layout/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Layout/NavMenu.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Layout/NavMenu.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Pages/Counter.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Pages/Home.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Pages/Home.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Pages/ModPage.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Pages/ModPage.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Pages/Weather.razor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Components/Pages/ModPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Components/Pages/ModPage.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MauiProgram.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PacoYakuzaMAUI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PacoYakuzaMAUI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wwwroot/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PacoYakuzaMAUI.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PacoYakuzaMAUI.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Mod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/model/Mod.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/GitHubService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/services/GitHubService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/ModService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/services/ModService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,17 +52,22 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d832601e173f43a8aaebb20a4bc1ae52143820/38/35a1da39/DispatcherQueueHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2251605994faab2e9a772feeb9f7d2af1ad3410169888d997c651461c2b3b71/FileSystem.Windows.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3056468695f78cc11ddbaa391d302e2a1ab4dc7147e7f9a38b752905bbca4/Dispatcher.Windows.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/327f875fd92c358a2c6b3c48cc81b288070ecb997371cd17419f80a482a617/LayoutComponentBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/41cc15f497228cdf26848285332426251aae8bcefea8a9fb75ec3f65e9fe46f/IpcReceiver.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5555235f537c73bad3ed5397fa951468367fe360f4a1d75c13a4da898eaef3/Renderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5f59d85afb3b5ad18cca08a6d1adf2f868565d3fa5dc94309a17cd8bfb2067/RenderTreeDiffBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/669142762fe6d3cf7d37f077c5a6cd58ee415a166197c9fb454faf1921fc6/String.Comparison.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6e745ffb71ce7ceeb147a2c844d6bb52a3e94c1a4eba268d1ea8ded58544ec1/Router.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7beca651b1af466d51e879c74afac8ebca741c3e99965ead1e70bb60811c3054/ComponentBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a1d83af254f0e3f1f710175085db7669e82f6944bbb3b88bb2b33d9b8edec688/NavLink.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a360c7589ee5ab6c7d46272e049ae4c2b1551db251193539f9ad85ccd7b15/ComponentState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aa939405f93119bb94b131f572936dac77a509466298fad92cb51151769ce1/NodeValueDeserializer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b7208b3f72528d22781d25fde9a55271bdf2b5aade4f03b1324579a25493cd8/List.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c44349fc767a80515cb9cfa4a9c97759e8a3b11ad03b29bbed709f13b863b0b2/DispatcherExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c825ceea8a323cb6d358a4d2ecce0ae484713abcdb7c2329995272ad01dcb/RenderHandle.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cac241b71611f4f0a185b3988ec18b7d242070a43b6c62dda117f496bf5a33a2/String.Searching.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d9e718895515bb3f03432b3207d45b4b5b280fd6834409926ea436d53339c6f/WebViewNavigationManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f2b8e7ccbeb219857a2c97b0efcc80aec56be4624d49104cd44b606aa3895633/WebViewManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/App.xaml" root0="FORCE_HIGHLIGHTING" />
@@ -139,7 +140,7 @@
       <option name="presentableId" value="Default" />
       <updated>1751194724335</updated>
       <workItem from="1751194725971" duration="3930000" />
-      <workItem from="1751205706307" duration="14973000" />
+      <workItem from="1751205706307" duration="23028000" />
     </task>
     <task id="LOCAL-00001" summary="Commit inicial">
       <option name="closed" value="true" />
@@ -202,10 +203,10 @@
           <line>41</line>
           <properties documentPath="C:\Users\hkcog\Desktop\Modulos\Rider\PacoYakuzaMAUI\services\ModService.cs" containingFunctionPresentation="Method 'GetMods'">
             <startOffsets>
-              <option value="1587" />
+              <option value="1588" />
             </startOffsets>
             <endOffsets>
-              <option value="1608" />
+              <option value="1609" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="8" />
@@ -215,6 +216,7 @@
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Frame#PacoYakuzaMAUI.services.ModService.GetMods" memberName="e" />
+        <PinnedItemInfo parentTag="Frame#PacoYakuzaMAUI.services.SettingModifierService.ModifySetting" memberName="file" />
       </pinned-members>
     </pin-to-top-manager>
   </component>

@@ -10,8 +10,7 @@ public static class ModService
     {
         if (Mods.Count == 0)
         {
-            var dir = AppDomain.CurrentDomain.BaseDirectory;
-            foreach (var modDir in Directory.GetDirectories(dir))
+            foreach (var modDir in Directory.GetDirectories(GetParentDirectory()))
             {
                 var modYamlPath = Path.Combine(modDir, "modular.yaml");
                 if (File.Exists(modYamlPath))
@@ -35,6 +34,7 @@ public static class ModService
                             });
                             setting.Activo = active;
                         });
+                        mod.Folder = modDir;
                         Mods.Add(mod);
                     }
                     catch (Exception e)
@@ -47,5 +47,24 @@ public static class ModService
         }
 
         return Mods;
+    }
+    
+    public static string GetParentDirectory()
+    {
+        string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+        Console.WriteLine($"Directorio base: {baseDir}");
+    
+        // Si la ruta termina con un separador, elimínalo
+        if (baseDir.EndsWith(Path.DirectorySeparatorChar) || baseDir.EndsWith(Path.AltDirectorySeparatorChar))
+        {
+            baseDir = baseDir.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            Console.WriteLine($"Directorio base sin separador final: {baseDir}");
+        }
+    
+        // Ahora obtén el directorio padre
+        string parentDir = Path.GetDirectoryName(baseDir);
+        Console.WriteLine($"Directorio padre: {parentDir}");
+    
+        return parentDir;
     }
 }
