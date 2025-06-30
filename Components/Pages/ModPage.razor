@@ -1,17 +1,19 @@
-﻿@page "/mod/{modName}"
-@using Microsoft.AspNetCore.Components
+﻿@page "/game/{gameName}/mod/{modName}"
 @using ModUlar.Components.Card
 @using ModUlar.model
 @using ModUlar.services
-
+@inject GameService GameService
 @code {
     [Parameter] public string modName { get; set; }
+    [Parameter] public string gameName { get; set; }
     [CascadingParameter] public Action<string> SetMainBackgroundStyle { get; set; }
     private Mod currentMod { get; set; }
-
     protected override void OnParametersSet()
     {
-        currentMod = ModService.GetMods().FirstOrDefault(m => m.Name.Equals(modName, StringComparison.OrdinalIgnoreCase));
+        currentMod = GameService.GetGamesWithMods()
+            .FirstOrDefault(m => m.Name.Equals(gameName, StringComparison.OrdinalIgnoreCase))
+            .Mods
+            .FirstOrDefault(m => m.Name.Equals(modName, StringComparison.OrdinalIgnoreCase));
         SetMainBackgroundStyle?.Invoke(GetBackgroundStyle(currentMod.Background));
     }
 

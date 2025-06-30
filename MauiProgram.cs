@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ModUlar.model;
 using ModUlar.services;
 using ModUlar.Services;
 using ModUlar.utils;
@@ -24,6 +25,8 @@ public static class MauiProgram
         builder.Services.AddScoped<GitHubService>();
         builder.Services.AddSingleton<ILauncherService, LauncherService>();
         builder.Services.AddSingleton<SettingModifierService>();
+        builder.Services.AddSingleton<GameFolderPicker>();
+        builder.Services.AddSingleton<GameService>();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
