@@ -1,7 +1,4 @@
-﻿namespace PacoYakuzaMAUI.utils;
-
-using System;
-using System.Threading.Tasks;
+﻿namespace ModUlar.utils;
 
 public class EventAggregator
 {

@@ -1,4 +1,4 @@
-﻿namespace PacoYakuzaMAUI;
+﻿namespace ModUlar;
 
 public partial class MainPage : ContentPage
 {

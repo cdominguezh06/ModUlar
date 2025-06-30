@@ -1,7 +1,9 @@
 ﻿@page "/mod/{modName}"
-@using PacoYakuzaMAUI.model
-@using PacoYakuzaMAUI.services
-@using PacoYakuzaMAUI.Components.Card
+@using Microsoft.AspNetCore.Components
+@using ModUlar.Components.Card
+@using ModUlar.model
+@using ModUlar.services
+
 @code {
     [Parameter] public string modName { get; set; }
     [CascadingParameter] public Action<string> SetMainBackgroundStyle { get; set; }

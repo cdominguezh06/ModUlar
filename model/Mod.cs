@@ -1,6 +1,6 @@
 ﻿using YamlDotNet.Serialization;
 
-namespace PacoYakuzaMAUI.model;
+namespace ModUlar.model;
 
 public class Mod
 {

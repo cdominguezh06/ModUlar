@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
-using PacoYakuzaMAUI.services;
-using PacoYakuzaMAUI.Services;
-using PacoYakuzaMAUI.utils;
-
-namespace PacoYakuzaMAUI;
+using ModUlar.services;
+using ModUlar.Services;
+using ModUlar.utils;
+namespace ModUlar;
 
 public static class MauiProgram
 {
@@ -14,7 +13,7 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
             {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular"); 
                 fonts.AddFont("edosz.ttf", "EdoSZ");
             });
 
