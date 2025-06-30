@@ -20,7 +20,6 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    filter: blur(10px);
     z-index: -1;
 }
 
@@ -112,4 +111,6 @@ main {
     -webkit-transition: background-image 0.5s ease-in-out;
     transition: background 0.5s ease-in-out;
     width: 100%;
+    min-height: 100vh;
+    height: 100%;
 }
