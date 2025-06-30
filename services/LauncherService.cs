@@ -1,6 +1,6 @@
-﻿using Microsoft.Maui.ApplicationModel;
+﻿using ModUlar.services;
 
-namespace PacoYakuzaMAUI.Services
+namespace ModUlar.Services
 {
     public class LauncherService : ILauncherService
     {

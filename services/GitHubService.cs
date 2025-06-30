@@ -1,7 +1,7 @@
-﻿namespace PacoYakuzaMAUI.services;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+
+namespace ModUlar.services;
+
 public class GitHubService
 {
     private readonly HttpClient _httpClient;
