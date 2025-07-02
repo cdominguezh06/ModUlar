@@ -1,14 +1,33 @@
 ﻿@inherits Microsoft.AspNetCore.Components.LayoutComponentBase
 @inject BackgroundState BgState
 @inject EventAggregator Events
+@using Blazored.Toast.Configuration
 @using ModUlar.services
 @using ModUlar.utils
+@using MudBlazor
 @implements IDisposable
-
+<MudThemeProvider Theme="_whiteTheme"/>
 @code {
     private Func<Task> _listener;
     private bool _isDisposed = false;
 
+    private MudTheme _whiteTheme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = "#ce1722",
+            Secondary = "#a81f27",
+            Tertiary = "#a81f27",
+            AppbarBackground = "#a81f27",
+            DrawerIcon = "#a81f27",
+            DrawerText = "#a81f27",
+            DrawerBackground = "#a81f27",
+            Surface = "#ffffff",
+            Background = "#ffffff",
+            TextPrimary = "#a81f27",
+            TextSecondary = "#a81f27",
+        },
+    };
     protected override void OnInitialized()
     {
         _listener = async () =>
@@ -57,17 +76,24 @@
 
 
 <CascadingValue Value="(Action<string>)(style => BgState.MainBackgroundStyle = style)">
+    <BlazoredToasts Position="ToastPosition.BottomRight" 
+                    Timeout="2"
+                    IconType="IconType.FontAwesome" 
+                    ShowProgressBar="true"/>
     <div class="page">
-        <div class="sidebar-wrapper">
-            <div class="sidebar-background" style="@BgState.DefaultSideBarBackground"></div>
-            <div class="sidebar-content" style="@BgState.DefaultSideBarTextColor">
-                <NavMenu/>
+        <div class="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="sidebar-content">
+                    <NavMenu/>
+                </div>
+            </div>    
+            <div class="bottom-elements">
+                <div class="paypal">
+                    <PayPalDonateButton HostedButtonId="PD8TLKZR9DK8Q"/>
+                </div>
             </div>
         </div>
         <main class="main-content" style="@BgState.MainBackgroundStyle">
-            <div class="top-row px-4" style="background-color: rgba(0,0,0,0.29)">
-                <PayPalDonateButton HostedButtonId="PD8TLKZR9DK8Q"/>
-            </div>
             <article class="content-wrapper px-4" style="@BgState.TextColorStyle">
                 <div class="content-container">
                     @Body

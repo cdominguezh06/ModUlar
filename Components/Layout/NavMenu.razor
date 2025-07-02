@@ -2,8 +2,10 @@
 @using ModUlar.services
 @inject GameFolderPicker GameFolderPicker
 @inject GameService GameService
+@using MudBlazor
 
 @code {
+
     protected override void OnInitialized()
     {
         GameService.GamesChanged += OnGamesChanged;
@@ -18,78 +20,61 @@
     {
         GameService.GamesChanged -= OnGamesChanged;
     }
+
 }
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler"/>
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-group">
-            <div class="top-row ps-3 navbar navbar-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="">Juegos</a>
-                </div>
-            </div>
-            @if (GameService.GetGamesWithMods() != null && GameService.GetGamesWithMods().Any())
+
+<MudNavMenu Style="max-width: 20vw;">
+    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+    <MudNavLink OnClick="AgregarJuego" Icon="@Icons.Material.Filled.Add">Add game</MudNavLink>
+    @if (GameService.GetGamesWithMods().Any())
+    {
+        <MudNavGroup Title="Games" Icon="@Icons.Material.Filled.Games" Expanded="true">
+            @foreach (var game in GameService.GetGamesWithMods())
             {
-                @foreach (var game in GameService.GetGamesWithMods())
-                {
-                    <div class="nav-item px-3">
-                        <NavLink class="nav-link game-link" href="#">
-                            <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> @game.Name
-                        </NavLink>
-                        
-                        @if (game.Mods != null && game.Mods.Any())
+                <MudNavGroup Title="@game.Name" Icon="@Icons.Material.Filled.SportsEsports">
+
+                    @if (game.Mods.Any())
+                    {
+                        @foreach (var mod in game.Mods)
                         {
-                            <div class="mods-container">
-                                <div class="mods-title">Mods de @game.Name</div>
-                                @foreach (var mod in game.Mods)
-                                {
-                                    <NavLink class="nav-link mod-link" href="@($"/game/{Uri.EscapeDataString(game.Name)}/mod/{Uri.EscapeDataString(mod.Name)}")">
-                                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> @mod.Name
-                                    </NavLink>
-                                }
-                            </div>
+                            <MudNavLink
+                                Href="@($"/game/{Uri.EscapeDataString(game.Name)}/mod/{Uri.EscapeDataString(mod.Name)}")"
+                                Icon="@Icons.Material.Filled.Settings">@mod.Name</MudNavLink>
                         }
-                    </div>
-                }
+                    }
+                </MudNavGroup>
             }
-            else
-            {
-                <div class="text-muted px-3">No hay juegos disponibles.</div>
-            }
-            <div class="nav-item px-3">
-                <button class="nav-link btn btn-link" style="padding:0;" @onclick="AgregarJuego">
-                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Agregar Juego
-                </button>
-            </div>
-            @if (mostrarDialogoNombre)
-            {
-                <div class="modal-backdrop" style="display:flex; position:fixed; top:0; left:0; width:100vw; height:100vh; align-items:center; justify-content:center; z-index:1040; background-color:rgba(0,0,0,0.75);">
-                    <div class="modal-dialog modal-dialog-centered" style="margin:1rem; width:auto; max-width:90%; min-width:300px; z-index:1050;">
-                        <div class="modal-content p-3 p-md-4" style="background-color:white; box-shadow:0 0 20px rgba(0,0,0,0.5); border-radius:8px;">
-                            <div class="modal-header border-bottom-0 pb-0">
-                                <h5 class="modal-title" style="color:black; font-weight:500;">Enter a name for the game</h5>
-                                <button type="button" class="btn-close" @onclick="CancelarDialogo" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body pt-3">
-                                <input @bind="gameName" class="form-control mb-3" placeholder="Game name" style="border:1px solid #ced4da;" />
-                            </div>
-                            <div class="modal-footer border-top-0 pt-0">
-                                <button class="btn btn-secondary" @onclick="CancelarDialogo">Cancel</button>
-                                <button class="btn btn-primary" @onclick="ConfirmarNombre">Accept</button>
-                            </div>
-                        </div>
-                    </div>
+        </MudNavGroup>
+    }
+</MudNavMenu>
+
+@if (mostrarDialogoNombre)
+{
+    <div class="modal-backdrop"
+         style="display:flex; position:fixed; top:0; left:0; width:100vw; height:100vh; align-items:center; justify-content:center; z-index:1040; background-color:rgba(0,0,0,0.75);">
+        <div class="modal-dialog modal-dialog-centered"
+             style="margin:1rem; width:auto; max-width:90%; min-width:300px; z-index:1050;">
+            <div class="modal-content p-3 p-md-4"
+                 style="background-color:white; box-shadow:0 0 20px rgba(0,0,0,0.5); border-radius:8px;">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title" style="color:black; font-weight:500;">Enter a name for the
+                        game</h5>
+                    <button type="button" class="btn-close" @onclick="CancelarDialogo"
+                            aria-label="Close"></button>
                 </div>
-            }
+                <div class="modal-body pt-3">
+                    <input @bind="gameName" class="form-control mb-3" placeholder="Game name"
+                           style="border:1px solid #ced4da;"/>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button class="btn btn-secondary" @onclick="CancelarDialogo">Cancel</button>
+                    <button class="btn btn-primary" @onclick="ConfirmarNombre">Accept</button>
+                </div>
+            </div>
         </div>
-    </nav>
-</div>
+    </div>
+}
 
 @code
 {

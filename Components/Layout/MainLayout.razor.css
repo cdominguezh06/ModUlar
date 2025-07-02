@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 main {
@@ -9,11 +10,28 @@ main {
 }
 
 .sidebar {
+    width: 20vw !important;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 .sidebar-wrapper {
     position: relative;
+    background: #111111;
+    flex-grow : 1;
+    max-width: 20vw;
 }
-
+.paypal{
+    display: flex;
+    justify-content: center;
+}
+.bottom-elements{
+    position: relative;
+    background: #111111;
+    max-width: 20vw;
+    border-top: 1px solid #a81f27;
+    z-index: 10;
+}
 .sidebar-background {
     position: absolute;
     top: 0;
@@ -26,6 +44,9 @@ main {
 .sidebar-content {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
 }
 .top-row {
     background-color: #f7f7f7;
@@ -111,6 +132,5 @@ main {
     -webkit-transition: background-image 0.5s ease-in-out;
     transition: background 0.5s ease-in-out;
     width: 100%;
-    min-height: 100%;
-    height: 100%;
+    min-height: 100vh;
 }

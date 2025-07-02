@@ -1,8 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Blazored.Toast;
+using Blazored.Toast.Services;
+using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 using ModUlar.model;
 using ModUlar.services;
 using ModUlar.Services;
 using ModUlar.utils;
+using MudBlazor.Services;
+
 namespace ModUlar;
 
 public static class MauiProgram
@@ -14,7 +19,7 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
             {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular"); 
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("edosz.ttf", "EdoSZ");
             });
 
@@ -27,12 +32,13 @@ public static class MauiProgram
         builder.Services.AddSingleton<SettingModifierService>();
         builder.Services.AddSingleton<GameFolderPicker>();
         builder.Services.AddSingleton<GameService>();
+        builder.Services.AddBlazoredToast();
+        builder.Services.AddMudServices();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug();
 #endif
-
         return builder.Build();
     }
 }

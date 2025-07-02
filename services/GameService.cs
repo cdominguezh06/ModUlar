@@ -8,9 +8,9 @@ public class GameService
 {
     private List<Game> Games { get; set; } = new List<Game>();
     public event Action GamesChanged;
+
     public List<Game> GetGamesWithMods()
     {
-        
         if (Games.Count == 0)
         {
             LoadGames();
@@ -18,10 +18,8 @@ public class GameService
             {
                 return Games;
             }
-            Games.ForEach(game =>
-            {
-                AddMods(game);
-            });
+
+            Games.ForEach(game => { AddMods(game); });
         }
 
         return Games;
@@ -30,59 +28,58 @@ public class GameService
     private void AddMods(Game game)
     {
         game.Mods = new List<Mod>();
-        Directory.GetDirectories(game.GameFolder + "/mods").ToList().ForEach(dir =>
+        Directory.GetDirectories((game.GameFolder + "/mods").Replace('/', '\\')).ToList().ForEach(dir =>
         {
-            foreach (var modDir in Directory.GetDirectories(GetParentDirectory()))
+            var modYamlPath = Path.Combine(dir, "modular.yaml");
+            if (File.Exists(modYamlPath))
             {
-                var modYamlPath = Path.Combine(modDir, "modular.yaml");
-                if (File.Exists(modYamlPath))
+                var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
+                    .IgnoreUnmatchedProperties()
+                    .Build();
+                try
                 {
-                    var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
-                        .IgnoreUnmatchedProperties()
-                        .Build();
-                    try
+                    var mod = deserializer.Deserialize<Mod>(File.ReadAllText(modYamlPath));
+                    mod.Settings.ForEach(setting =>
                     {
-                        var mod = deserializer.Deserialize<Mod>(File.ReadAllText(modYamlPath));
-                        mod.Settings.ForEach(setting =>
+                        var active = true;
+                        setting.Files.ForEach(file =>
                         {
-                            var active = true;
-                            setting.Files.ForEach(file =>
+                            var path = Path.Combine(dir, file.Folder, file.Name);
+                            if (!File.Exists(path))
                             {
-                                var path = Path.Combine(modDir, file.Folder, file.Name);
-                                if (!File.Exists(path))
-                                {
-                                    active = false;
-                                }
-                            });
-                            setting.Activo = active;
+                                active = false;
+                            }
                         });
-                        mod.Folder = modDir;
-                        game.Mods.Add(mod);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
+                        setting.Activo = active;
+                    });
+                    mod.Folder = dir;
+                    game.Mods.Add(mod);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
                 }
             }
         });
     }
+
     private void LoadGames()
     {
         var deserializer = new DeserializerBuilder()
             .IgnoreUnmatchedProperties()
             .Build();
-        if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory+"/games.yaml"))
+        if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/games.yaml"))
         {
             var yamlContent = "Games: []\n";
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/games.yaml", yamlContent);
             return;
         }
-        using var reader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory+"/games.yaml");
+
+        using var reader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/games.yaml");
         var yaml = reader.ReadToEnd();
         var dict = deserializer.Deserialize<Dictionary<string, List<Game>>>(yaml);
-        Games = dict.TryGetValue("Games", out var games) && games != null ? games : new List<Game>();
+        Games = dict.TryGetValue("Games", out var games) ? games : new List<Game>();
     }
 
     public string GetParentDirectory()
@@ -103,7 +100,7 @@ public class GameService
 
         return parentDir;
     }
-    
+
     public void AddGameToYaml(Game newGame)
     {
         var deserializer = new DeserializerBuilder()
@@ -115,9 +112,9 @@ public class GameService
 
         // Leer juegos existentes
         List<Game> games = new();
-        if (File.Exists(AppDomain.CurrentDomain.BaseDirectory+"/games.yaml"))
+        if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/games.yaml"))
         {
-            using var reader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory+"/games.yaml");
+            using var reader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/games.yaml");
             var dict = deserializer.Deserialize<Dictionary<string, List<Game>>>(reader);
             if (dict != null && dict.TryGetValue("Games", out var loadedGames) && loadedGames != null)
                 games = loadedGames;
@@ -129,10 +126,11 @@ public class GameService
 
         var outDict = new Dictionary<string, List<Game>> { { "Games", games } };
         var yaml = serializer.Serialize(outDict);
-        File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory+"/games.yaml", yaml);
+        File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "/games.yaml", yaml);
         games = games.Distinct().ToList();
         Games = games;
         Games.ForEach(AddMods);
         GamesChanged?.Invoke();
     }
+    
 }
