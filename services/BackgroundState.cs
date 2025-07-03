@@ -5,7 +5,7 @@ namespace ModUlar.services;
 public class BackgroundState
 {
     private readonly EventAggregator _eventAggregator;
-    private string _mainBackgroundStyle = "";
+    private string _mainBackgroundStyle;
     private string _textColorStyle = "color: black;"; // Color de texto por defecto
     public BackgroundState(EventAggregator eventAggregator)
     {
