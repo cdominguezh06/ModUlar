@@ -10,4 +10,5 @@ public partial class SettingCard : ComponentBase
     
     [Parameter]
     public string ModFolder { get; set; }
+    
 }
