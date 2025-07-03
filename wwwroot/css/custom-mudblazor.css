@@ -1,0 +1,18 @@
+﻿.mud-collapse-entered .mud-collapse-wrapper {
+    overflow-y: hidden !important;
+    scrollbar-color: #a81f27 transparent;
+    scrollbar-width: thin;
+}
+
+.mud-navmenu > .mud-nav-group[aria-label="Games"] > .mud-collapse-container > .mud-collapse-wrapper > .mud-collapse-wrapper-inner{
+    overflow-y: auto !important;
+    scrollbar-color: #a81f27 transparent;
+    scrollbar-width: thin;
+    max-height: 100%;
+}
+
+.mud-collapse-wrapper {
+    overflow-y: hidden !important;
+    width: 100%;
+    max-height: 84vh;
+}

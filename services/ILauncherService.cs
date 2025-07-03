@@ -1,4 +1,4 @@
-﻿namespace PacoYakuzaMAUI.Services
+﻿namespace ModUlar.services
 {
     public interface ILauncherService
     {

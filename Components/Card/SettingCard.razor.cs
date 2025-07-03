@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
-using PacoYakuzaMAUI.model;
+using ModUlar.model;
 
-namespace PacoYakuzaMAUI.Components.Card;
+namespace ModUlar.Components.Card;
 
 public partial class SettingCard : ComponentBase
 {
@@ -10,4 +10,5 @@ public partial class SettingCard : ComponentBase
     
     [Parameter]
     public string ModFolder { get; set; }
+    
 }

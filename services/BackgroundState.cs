@@ -1,12 +1,12 @@
-﻿using PacoYakuzaMAUI.utils;
+﻿using ModUlar.utils;
+
+namespace ModUlar.services;
 
 public class BackgroundState
 {
     private readonly EventAggregator _eventAggregator;
-    private string _mainBackgroundStyle = "";
+    private string _mainBackgroundStyle;
     private string _textColorStyle = "color: black;"; // Color de texto por defecto
-    public string DefaultSideBarBackground = "background-color : black";
-    public string DefaultSideBarTextColor = "color : white";
     public BackgroundState(EventAggregator eventAggregator)
     {
         _eventAggregator = eventAggregator;
@@ -22,17 +22,6 @@ public class BackgroundState
                 _mainBackgroundStyle = value;
                 // Calcular y actualizar el color de texto basado en el nuevo fondo
                 _textColorStyle = GetContrastingTextColor(value);
-                if (!_mainBackgroundStyle.Contains("#fff"))
-                {
-                    DefaultSideBarBackground = _mainBackgroundStyle + " filter: blur(10px); transform: scale(1.1);";
-                    DefaultSideBarTextColor = _textColorStyle;
-                }
-                else
-                {
-                    DefaultSideBarBackground = "background-color : black";
-                    DefaultSideBarTextColor = "color : white";
-                }
-                
                 _ = _eventAggregator.NotifyBackgroundChanged();
             }
         }
@@ -172,5 +161,17 @@ public class BackgroundState
         
         // Color por defecto (negro)
         return new RgbColor(0, 0, 0);
+    }
+
+    public Windows.UI.Color GetWindowColor()
+    {
+        var rgbColor = HexToRgb(_textColorStyle.Split(":")[1].TrimStart());
+        return new Windows.UI.Color 
+        { 
+            A = 100,
+            R = (byte)rgbColor.R,
+            G = (byte)rgbColor.G,
+            B = (byte)rgbColor.B
+        };
     }
 }

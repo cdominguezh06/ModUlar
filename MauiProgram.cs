@@ -1,9 +1,14 @@
-﻿using Microsoft.Extensions.Logging;
-using PacoYakuzaMAUI.services;
-using PacoYakuzaMAUI.Services;
-using PacoYakuzaMAUI.utils;
+﻿using Blazored.Toast;
+using Blazored.Toast.Services;
+using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
+using ModUlar.model;
+using ModUlar.services;
+using ModUlar.Services;
+using ModUlar.utils;
+using MudBlazor.Services;
 
-namespace PacoYakuzaMAUI;
+namespace ModUlar;
 
 public static class MauiProgram
 {
@@ -25,12 +30,15 @@ public static class MauiProgram
         builder.Services.AddScoped<GitHubService>();
         builder.Services.AddSingleton<ILauncherService, LauncherService>();
         builder.Services.AddSingleton<SettingModifierService>();
+        builder.Services.AddSingleton<GameFolderPicker>();
+        builder.Services.AddSingleton<GameService>();
+        builder.Services.AddBlazoredToast();
+        builder.Services.AddMudServices();
 
 #if DEBUG
         builder.Services.AddBlazorWebViewDeveloperTools();
         builder.Logging.AddDebug();
 #endif
-
         return builder.Build();
     }
 }

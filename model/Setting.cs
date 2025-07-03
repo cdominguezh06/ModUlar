@@ -1,4 +1,4 @@
-﻿namespace PacoYakuzaMAUI.model;
+﻿namespace ModUlar.model;
 public class FileItem
 {
     public string Name { get; set; }

@@ -1,11 +1,12 @@
-﻿@using PacoYakuzaMAUI.model
-@using PacoYakuzaMAUI.services
+﻿@using Microsoft.AspNetCore.Components
+@using ModUlar.services
 @inject SettingModifierService Modifier
+@inject IToastService toastService
 
 <div class="setting-card">
     <div class="setting-card-header">
         <span class="setting-title">@Setting.Name</span>
-        <input type="checkbox" checked="@Setting.Activo" @onchange="HandleSettingChange" />
+        <input type="checkbox" @bind="@Setting.Activo" @onclick="HandleSettingChange"/>
     </div>
     <div class="setting-card-desc">
         @Setting.Description
@@ -13,9 +14,29 @@
 </div>
 
 @code {
-    private void HandleSettingChange(ChangeEventArgs e)
+    
+    private void HandleSettingChange()
     {
-        Setting.Activo = (bool)e.Value;
-        Modifier.ModifySetting(Setting, ModFolder);
+        try
+        {
+            Setting.Activo = !Setting.Activo;
+            Modifier.ModifySetting(Setting, ModFolder);
+            if (Setting.Activo)
+            {
+                toastService.ShowSuccess($"Setting '{Setting.Name}' activated");
+            }
+            else
+            {
+                toastService.ShowWarning($"Setting '{Setting.Name}' disabled");
+            }
+        }
+        catch (IOException exception)
+        {
+            string action = Setting.Activo ? "activating" : "disabling";
+            Setting.Activo = !Setting.Activo;
+            toastService.ShowError($"Error {action} {Setting.Name}: Try {action} the setting with the game closed");
+            InvokeAsync(StateHasChanged);
+        }
     }
+
 }

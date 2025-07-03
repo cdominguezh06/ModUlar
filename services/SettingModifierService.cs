@@ -1,6 +1,6 @@
-﻿using PacoYakuzaMAUI.model;
+﻿using ModUlar.model;
 
-namespace PacoYakuzaMAUI.services;
+namespace ModUlar.services;
 
 public class SettingModifierService
 {

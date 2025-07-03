@@ -1,7 +1,8 @@
 ﻿@page "/"
 @using Markdig
 @using System.Text.RegularExpressions
-@using PacoYakuzaMAUI.services
+@using Microsoft.AspNetCore.Components
+@using ModUlar.services
 @inject GitHubService GitHubService
 
 <PageTitle>ModUlar - Home</PageTitle>
@@ -28,7 +29,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        SetMainBackgroundStyle?.Invoke("background: #fff;");
+        SetMainBackgroundStyle?.Invoke("background-color: #111111");
         await LoadReadmeAsync();
     }
 

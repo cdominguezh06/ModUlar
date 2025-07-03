@@ -2,6 +2,8 @@
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    margin-top: 5%;
+    color: #ffffff;
 }
 
 .readme-content ::deep * {

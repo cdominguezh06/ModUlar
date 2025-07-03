@@ -1,0 +1,37 @@
+﻿/* custom-toast.css */
+.blazored-toast-container .blazored-toast {
+    /* Animación de aparición (entrada) */
+    animation-name: blazored-toast-in;
+    animation-duration: 0.5s; /* Tiempo de la animación de entrada (ajusta según necesites) */
+    background-color: #111111 !important;
+    color: #a81f27;
+}
+
+.blazored-toast-container .blazored-toast.blazored-toast-exiting {
+    /* Animación de desaparición (salida) */
+    animation-name: blazored-toast-out;
+    animation-duration: 1s; /* Tiempo de la animación de salida (ajusta según necesites) */
+}
+
+@keyframes blazored-toast-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blazored-toast-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    
+}
