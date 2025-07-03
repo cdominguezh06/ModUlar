@@ -1,3 +1,7 @@
+[![Static Badge](https://img.shields.io/badge/Github-Coguu-red?style=plastic&logo=github&labelColor=gray)](https://github.com/cdominguezh06)
+[![Static Badge](https://img.shields.io/badge/NexusMods-orange?style=flat-square)]()
+[![Latest release](https://img.shields.io/github/v/release/cdominguezh06/ModUlar?display_name=tag&color=green)](https://github.com/cdominguezh06/ModUlar/releases)
+
 # 🇺🇸 ModUlar
 
 ModUlar is a tool designed to activate/deactivate individual features of compatible mods for games in the Yakuza/Like a Dragon saga.
