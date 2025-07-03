@@ -12,6 +12,9 @@ ModUlar allows users to customize their mods by enabling or disabling specific c
 
 ## How It Works
 
+Click on the "Add Game" button. When prompted to select a folder you may select the one with the mods folder (For example, the folder to select in LAD: Pirate Yakuza would be "media")
+Add a name for the game and save it. Now you can access a list of compatible mods at the sidebar
+
 The program uses a `modular.yaml` configuration file located in each mod's folder to obtain information about the mod and its configurable components. Based on this information, ModUlar allows users to activate or deactivate specific features of the mod.
 
 ## Structure of the modular.yaml file
@@ -82,6 +85,9 @@ ModUlar es una herramienta diseñada para activar/desactivar características in
 ModUlar permite a los usuarios personalizar sus mods habilitando o deshabilitando componentes específicos sin necesidad de reinstalar o modificar manualmente los archivos. Esto facilita la personalización de la experiencia de juego según las preferencias del usuario.
 
 ## Funcionamiento
+
+Pulsa en el botón "Add Game". Cuando se pida introducir una carpeta debes seleccionar la carpeta que contenga la carpeta "mods" (Por ejemplo, en LAD: Pirate Yakuza la carpeta a elegir sería "media")
+Introduce el nombre del juego y guárdalo. Ahora puedes ver la lista de mods compatibles del juego en la barra lateral
 
 El programa utiliza un archivo de configuración `modular.yaml` ubicado en la carpeta de cada mod para obtener información sobre el mod y sus componentes configurables. Basándose en esta información, ModUlar permite a los usuarios activar o desactivar características específicas del mod.
 
