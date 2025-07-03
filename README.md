@@ -1,5 +1,5 @@
 [![Static Badge](https://img.shields.io/badge/Github-Coguu-red?style=plastic&logo=github&labelColor=gray)](https://github.com/cdominguezh06)
-[![Static Badge](https://img.shields.io/badge/NexusMods-orange?style=flat-square)]()
+[![Static Badge](https://img.shields.io/badge/NexusMods-orange?style=flat-square)](https://www.nexusmods.com/site/mods/1362)
 [![Latest release](https://img.shields.io/github/v/release/cdominguezh06/ModUlar?display_name=tag&color=green)](https://github.com/cdominguezh06/ModUlar/releases)
 
 # 🇺🇸 ModUlar
